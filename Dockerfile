@@ -28,8 +28,8 @@ RUN npm install -g serve
 # Copy thư mục build từ stage trước
 COPY --from=build /app/dist /app/dist
 
-# Mở port 3000
-EXPOSE 3000
+# Mở port 5173
+EXPOSE 5173
 
-# Chạy ứng dụng với serve
-CMD ["serve", "-s", "dist", "-l", "3000"] 
+# Chạy ứng dụng với serve trên port 5173
+CMD ["serve", "-s", "dist", "-l", "5173"] 
