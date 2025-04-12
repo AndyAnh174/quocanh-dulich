@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: thuduc-unlocked
     ports:
-      - "3000:3000"
+      - "5050:3000"
     restart: unless-stopped
     environment:
       - NODE_ENV=production 
