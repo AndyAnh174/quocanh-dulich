@@ -10,7 +10,7 @@ const Footer = () => {
           <p>TIẾU LÂM TOURIST - 280 An Dương Vương, Phường 4, Quận 5, TP.HCM</p>
           <p>Hotline: 0931.32.4693 - 0931.00.5624</p>
           <p>Email: tieulamtourist@gmail.com</p>
-          <p>Website: <a href="https://tieulamtourist.com" className="text-white hover:text-gray-300">tieulamtourist.com</a></p>
+          <p>Website: <a href="https://tieulamtourist.io.vn" className="text-white hover:text-gray-300">tieulamtourist.io.vn</a></p>
         </div>
       </div>
     </footer>
