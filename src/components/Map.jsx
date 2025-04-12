@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import 'leaflet-routing-machine';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import congvien from '../assets/congvien.jpg';
 import hosenhonha from '../assets/hosen.jpg';
 import vietgangz from '../assets/vietgang.jpg';
@@ -14,6 +16,37 @@ L.Icon.Default.mergeOptions({
   iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
 });
+
+// Component tạo lộ trình đường đi
+const RoutingMachine = ({ waypoints, showRoutes }) => {
+  const map = useMap();
+  
+  useEffect(() => {
+    if (!map || !showRoutes) return;
+    
+    const routingControl = L.Routing.control({
+      waypoints: waypoints.map(wp => L.latLng(wp[0], wp[1])),
+      routeWhileDragging: false,
+      lineOptions: {
+        styles: [{ color: '#0066ff', weight: 7, opacity: 0.9 }]
+      },
+      addWaypoints: false,
+      draggableWaypoints: false,
+      fitSelectedRoutes: false,
+      showAlternatives: false,
+      createMarker: () => null // Không tạo marker mặc định
+    }).addTo(map);
+    
+    // Ẩn bảng hướng dẫn
+    routingControl.hide();
+    
+    return () => {
+      map.removeControl(routingControl);
+    };
+  }, [map, waypoints, showRoutes]);
+  
+  return null;
+};
 
 const MapComponent = () => {
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -61,18 +94,13 @@ const MapComponent = () => {
     }
   ];
 
-  // Tạo đường đi tour theo thứ tự từ địa điểm 1 đến địa điểm 4
-  const tourRoute = {
-    positions: [
-      locations[0].position, // Điểm 1: Công viên Lịch Sử - Văn Hóa Dân tộc
-      locations[1].position, // Điểm 2: Hồ Sen Hồ Nhà
-      locations[2].position, // Điểm 3: Vietgangz
-      locations[3].position  // Điểm 4: Bảo tàng áo dài
-    ],
-    color: '#FF5733',
-    weight: 4,
-    opacity: 0.8
-  };
+  // Tạo waypoints cho routing
+  const tourWaypoints = [
+    locations[0].position, // Điểm 1: Công viên Lịch Sử - Văn Hóa Dân tộc
+    locations[1].position, // Điểm 2: Hồ Sen Hồ Nhà
+    locations[2].position, // Điểm 3: Vietgangz
+    locations[3].position  // Điểm 4: Bảo tàng áo dài
+  ];
 
   // Xử lý khi click vào marker
   const handleMarkerClick = (location) => {
@@ -138,17 +166,8 @@ const MapComponent = () => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               />
               
-              {/* Vẽ đường đi tour */}
-              {showRoutes && (
-                <Polyline
-                  positions={tourRoute.positions}
-                  pathOptions={{ 
-                    color: tourRoute.color,
-                    weight: tourRoute.weight,
-                    opacity: tourRoute.opacity
-                  }}
-                />
-              )}
+              {/* Sử dụng Routing Machine cho đường đi thực tế */}
+              {showRoutes && <RoutingMachine waypoints={tourWaypoints} showRoutes={showRoutes} />}
               
               {/* Hiển thị các marker */}
               {locations.map((location, index) => (

@@ -6,11 +6,8 @@ const PricingInfo = () => {
       <div className="container mx-auto px-4">
         {/* Giá Tour */}
         <div className="flex justify-center mb-12">
-          <div className="bg-cyan-500 rounded-full py-2 px-6 flex items-center max-w-md">
-            <button className="bg-pink-500 text-white font-bold py-2 px-6 rounded-full mr-3 text-lg md:text-xl whitespace-nowrap">
-              ĐẶT NGAY
-            </button>
-            <span className="text-white text-xl md:text-2xl font-bold">
+          <div className="bg-cyan-500 rounded-full py-1 px-8 flex items-center max-w-md">
+            <span className="text-white text-3xl md:text-4xl font-bold">
               1.540.000 Đồng/Pax
             </span>
           </div>
