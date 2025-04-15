@@ -15,7 +15,7 @@ const PricingInfo = () => {
         
         {/* Giá tour bao gồm */}
         <div className="max-w-5xl mx-auto mb-10">
-          <div className="bg-cyan-500 text-white font-bold text-2xl md:text-3xl py-3 px-8 rounded-full inline-block mb-6">
+          <div className="bg-[#FF3198] text-white font-bold text-2xl md:text-3xl py-3 px-8 rounded-full inline-block mb-6">
             💰 Giá tour bao gồm:
           </div>
           
@@ -45,7 +45,7 @@ const PricingInfo = () => {
         
         {/* Tour không bao gồm */}
         <div className="max-w-4xl mx-auto">
-          <div className="bg-cyan-500 text-white font-bold text-2xl md:text-3xl py-3 px-8 rounded-full inline-block mb-6">
+          <div className="bg-[#FF3198] text-white font-bold text-2xl md:text-3xl py-3 px-8 rounded-full inline-block mb-6">
             ⛔ Tour không bao gồm:
           </div>
           

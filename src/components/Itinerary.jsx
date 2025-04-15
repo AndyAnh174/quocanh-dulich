@@ -5,7 +5,7 @@ const Itinerary = () => {
     <section className="py-8 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="text-5xl md:text-6xl font-bold text-center mb-8">
-          <span className="text-pink-500">👉 LỊCH TRÌNH CHI TIẾT</span>
+          <span className="text-pink-500">LỊCH TRÌNH CHI TIẾT</span>
         </h2>
         
         <div className="border-t border-b border-gray-300 py-6 my-4">
